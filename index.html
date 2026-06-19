@@ -408,6 +408,57 @@
 
         .skill:hover { border-color: var(--black); color: var(--black); }
 
+        /* Tools */
+        .tools-section { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 60px; }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 20px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card-bg);
+            transition: all 0.3s;
+        }
+
+        .tool-item:hover { border-color: var(--black); transform: translateY(-2px); }
+
+        .tool-item i { font-size: 1.6rem; color: var(--mid); }
+        .tool-item span { font-size: 0.7rem; font-weight: 600; color: var(--light); text-align: center; }
+
+        /* QR Section */
+        .qr-section {
+            text-align: center;
+            padding: 50px 60px;
+            background: var(--bg);
+        }
+
+        .qr-section p { font-size: 0.85rem; color: var(--light); margin-bottom: 16px; }
+
+        .qr-code {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px;
+            background: white;
+        }
+
+        .qr-code img { width: 100%; height: 100%; }
+
+        .qr-hint { font-size: 0.72rem; color: var(--light); margin-top: 10px; }
+
         /* Expertise */
         .expertise-grid {
             display: grid;
@@ -828,6 +879,8 @@
             .about-content, .contact-grid, .education-grid, .cert-grid, .testimonial-grid { grid-template-columns: 1fr; }
             .case-content { grid-template-columns: 1fr; }
             .expertise-grid, .blog-grid { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: repeat(3, 1fr); }
+            .tools-section, .qr-section { padding: 40px 20px; }
             .otw-inner { grid-template-columns: 1fr 1fr; }
             .logos-inner { justify-content: center; }
             .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
@@ -869,8 +922,9 @@
             </div>
             <div class="hero-actions">
                 <a href="#experience" class="btn btn-dark">View Experience</a>
+                <a href="https://www.linkedin.com/in/amndlal" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> Connect on LinkedIn</a>
                 <a href="#contact" class="btn btn-outline">Get in Touch</a>
-                <a href="Aman_Dalal_CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+                <a href="Aman_Dalal_CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> CV</a>
             </div>
         </div>
         <div class="hero-right">
@@ -930,6 +984,27 @@
             </div>
         </div>
     </section>
+
+    <!-- Tools -->
+    <div class="tools-section">
+        <div style="text-align:center; margin-bottom:30px;">
+            <p class="section-label">Tools & Technologies</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-item"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+            <div class="tool-item"><i class="fas fa-database"></i><span>SAP ERP</span></div>
+            <div class="tool-item"><i class="fas fa-file-excel"></i><span>Excel (Advanced)</span></div>
+            <div class="tool-item"><i class="fas fa-project-diagram"></i><span>MS Project</span></div>
+            <div class="tool-item"><i class="fas fa-drafting-compass"></i><span>AutoCAD</span></div>
+            <div class="tool-item"><i class="fas fa-cube"></i><span>SOLIDWORKS</span></div>
+            <div class="tool-item"><i class="fas fa-trophy"></i><span>Six Sigma</span></div>
+            <div class="tool-item"><i class="fas fa-sync-alt"></i><span>Agile/Scrum</span></div>
+            <div class="tool-item"><i class="fas fa-chart-pie"></i><span>Data Analysis</span></div>
+            <div class="tool-item"><i class="fas fa-clipboard-check"></i><span>Quality Mgmt</span></div>
+            <div class="tool-item"><i class="fas fa-vr-cardboard"></i><span>AR/VR</span></div>
+            <div class="tool-item"><i class="fas fa-robot"></i><span>Industry 4.0</span></div>
+        </div>
+    </div>
 
     <!-- Expertise -->
     <section id="expertise">
@@ -1203,6 +1278,15 @@
             </div>
         </div>
     </section>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+        <p data-en="Share this portfolio" data-de="Dieses Portfolio teilen">Share this portfolio</p>
+        <div class="qr-code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://amndlal.github.io/portfolio-website/" alt="QR Code to portfolio">
+        </div>
+        <p class="qr-hint" data-en="Scan to visit on mobile — or print on your CV" data-de="Scannen für Mobilansicht — oder auf den Lebenslauf drucken">Scan to visit on mobile — or print on your CV</p>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
