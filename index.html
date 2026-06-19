@@ -292,16 +292,6 @@
             width: 50px;
         }
 
-        /* Noise texture overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.02;
-            pointer-events: none;
-            z-index: 9995;
-        }
 
         /* Hide custom cursor on mobile */
         @media (max-width: 900px) {
@@ -1119,6 +1109,9 @@
         .reveal { opacity: 0; transform: translateY(18px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        /* Fallback: show content if JS fails */
+        noscript ~ * .reveal { opacity: 1; transform: none; }
+
         /* Responsive */
         @media (max-width: 900px) {
             .nav { padding: 14px 20px; }
@@ -1147,11 +1140,6 @@
     </style>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div class="page-loader" id="pageLoader">
-        <span class="loader-text">Aman Dalal</span>
-    </div>
-
     <!-- Custom Cursor -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
@@ -1744,10 +1732,6 @@
 
         // === CRAZY EFFECTS ===
 
-        // Page loader
-        window.addEventListener('load', () => {
-            setTimeout(() => { document.getElementById('pageLoader').classList.add('hidden'); }, 1800);
-        });
 
         // Custom cursor
         const dot = document.getElementById('cursorDot');
