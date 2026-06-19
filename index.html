@@ -242,12 +242,12 @@
         }
 
         /* Staggered children */
-        .stagger-children > .reveal:nth-child(1) { transition-delay: 0s; }
-        .stagger-children > .reveal:nth-child(2) { transition-delay: 0.1s; }
-        .stagger-children > .reveal:nth-child(3) { transition-delay: 0.2s; }
-        .stagger-children > .reveal:nth-child(4) { transition-delay: 0.3s; }
-        .stagger-children > .reveal:nth-child(5) { transition-delay: 0.4s; }
-        .stagger-children > .reveal:nth-child(6) { transition-delay: 0.5s; }
+        .js-ready .stagger-children > .reveal:nth-child(1) { transition-delay: 0s; }
+        .js-ready .stagger-children > .reveal:nth-child(2) { transition-delay: 0.1s; }
+        .js-ready .stagger-children > .reveal:nth-child(3) { transition-delay: 0.2s; }
+        .js-ready .stagger-children > .reveal:nth-child(4) { transition-delay: 0.3s; }
+        .js-ready .stagger-children > .reveal:nth-child(5) { transition-delay: 0.4s; }
+        .js-ready .stagger-children > .reveal:nth-child(6) { transition-delay: 0.5s; }
 
         /* Hero image hover parallax */
         .hero-right {
@@ -1105,12 +1105,9 @@
         }
         .toast.show { transform: translateY(0); opacity: 1; }
 
-        /* Reveal */
-        .reveal { opacity: 0; transform: translateY(18px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* Fallback: show content if JS fails */
-        noscript ~ * .reveal { opacity: 1; transform: none; }
+        /* Reveal - only hide when JS is ready */
+        .js-ready .reveal { opacity: 0; transform: translateY(18px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* Responsive */
         @media (max-width: 900px) {
@@ -1594,7 +1591,8 @@
             document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Scroll reveal
+        // Mark JS as ready, then set up scroll reveal
+        document.body.classList.add('js-ready');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
