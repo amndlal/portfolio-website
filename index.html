@@ -121,7 +121,7 @@
             gap: 16px;
         }
 
-        .theme-toggle {
+        .nav-btn {
             cursor: pointer;
             width: 36px;
             height: 36px;
@@ -136,9 +136,15 @@
             transition: all 0.3s;
         }
 
-        .theme-toggle:hover {
+        .nav-btn:hover {
             border-color: var(--black);
             color: var(--black);
+        }
+
+        .lang-toggle {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .nav-mobile { display: none; cursor: pointer; font-size: 1.2rem; color: var(--dark); }
@@ -526,6 +532,117 @@
         .cert-detail { font-size: 0.75rem; color: var(--light); margin-bottom: 4px; }
         .cert-scope { font-size: 0.73rem; color: var(--light); font-style: italic; }
 
+        /* Case Studies */
+        .case-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .case-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card-bg);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .case-card:hover { border-color: var(--black); }
+
+        .case-header {
+            padding: 22px 26px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .case-header-left h3 { font-size: 0.95rem; font-weight: 600; color: var(--black); margin-bottom: 3px; }
+        .case-header-left p { font-size: 0.78rem; color: var(--light); }
+
+        .case-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .case-tag {
+            padding: 3px 10px;
+            background: var(--bg);
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--mid);
+        }
+
+        .case-toggle {
+            font-size: 0.85rem;
+            color: var(--light);
+            transition: transform 0.3s;
+        }
+
+        .case-card.open .case-toggle { transform: rotate(180deg); }
+
+        .case-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .case-card.open .case-body { max-height: 600px; }
+
+        .case-content {
+            padding: 0 26px 26px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .case-step { }
+        .case-step h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); margin-bottom: 8px; }
+        .case-step p { font-size: 0.82rem; color: var(--mid); line-height: 1.7; }
+        .case-step .case-metric { font-size: 1.4rem; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .testimonial-card {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card-bg);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 16px;
+            left: 24px;
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--border);
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 0.88rem;
+            color: var(--mid);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 16px;
+            padding-top: 20px;
+        }
+
+        .testimonial-author { font-size: 0.82rem; font-weight: 600; color: var(--black); }
+        .testimonial-role { font-size: 0.75rem; color: var(--light); }
+
         /* Open To Work */
         .open-to-work {
             background: var(--bg);
@@ -708,7 +825,8 @@
             .hero-meta { justify-content: center; }
             .hero-actions { justify-content: center; }
             .hero-desc { margin: 0 auto 30px; }
-            .about-content, .contact-grid, .education-grid, .cert-grid { grid-template-columns: 1fr; }
+            .about-content, .contact-grid, .education-grid, .cert-grid, .testimonial-grid { grid-template-columns: 1fr; }
+            .case-content { grid-template-columns: 1fr; }
             .expertise-grid, .blog-grid { grid-template-columns: 1fr; }
             .otw-inner { grid-template-columns: 1fr 1fr; }
             .logos-inner { justify-content: center; }
@@ -732,7 +850,8 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="nav-right">
-            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
+            <button class="nav-btn lang-toggle" onclick="toggleLang()" title="Sprache wechseln / Switch language">EN</button>
+            <button class="nav-btn" onclick="toggleTheme()" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
             <div class="nav-mobile" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
@@ -740,9 +859,9 @@
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-left">
-            <p class="hero-label">Operations &middot; Engineering &middot; Analytics</p>
+            <p class="hero-label" data-en="Operations &middot; Engineering &middot; Analytics" data-de="Betriebstechnik &middot; Ingenieurwesen &middot; Analytik">Operations &middot; Engineering &middot; Analytics</p>
             <h1>Driving Operational<br>Excellence Through<br><span class="typed-role" id="typedRole">Data</span></h1>
-            <p class="hero-desc">Operations Engineer at Amazon with a background in project management, Lean Six Sigma, and industrial analytics. I turn complex processes into efficient, measurable systems.</p>
+            <p class="hero-desc" data-en="Operations Engineer at Amazon with a background in project management, Lean Six Sigma, and industrial analytics. I turn complex processes into efficient, measurable systems." data-de="Operations Engineer bei Amazon mit Hintergrund in Projektmanagement, Lean Six Sigma und industrieller Analytik. Ich verwandle komplexe Prozesse in effiziente, messbare Systeme.">Operations Engineer at Amazon with a background in project management, Lean Six Sigma, and industrial analytics. I turn complex processes into efficient, measurable systems.</p>
             <div class="hero-meta">
                 <div class="hero-meta-item"><strong data-count="2" data-suffix="+">0</strong><span>Years Experience</span></div>
                 <div class="hero-meta-item"><strong data-count="30" data-suffix="%">0</strong><span>Lead Time Reduced</span></div>
@@ -763,7 +882,7 @@
     <!-- Company Logos -->
     <div class="logos">
         <div class="logos-inner">
-            <span class="logos-label">Associated with</span>
+            <span class="logos-label" data-en="Associated with" data-de="Verbunden mit">Associated with</span>
             <span class="logo-item">Amazon</span>
             <span class="logo-item">Godrej & Boyce</span>
             <span class="logo-item">Maruti Suzuki</span>
@@ -816,8 +935,8 @@
     <section id="expertise">
         <div class="container">
             <p class="section-label reveal">What I Do</p>
-            <h2 class="section-title reveal">Core Expertise</h2>
-            <p class="section-desc reveal">Combining engineering fundamentals with modern analytics to optimise operations at scale.</p>
+            <h2 class="section-title reveal" data-en="Core Expertise" data-de="Kernkompetenzen">Core Expertise</h2>
+            <p class="section-desc reveal" data-en="Combining engineering fundamentals with modern analytics to optimise operations at scale." data-de="Kombination von Ingenieursgrundlagen mit moderner Analytik zur Optimierung von Betriebsabläufen.">Combining engineering fundamentals with modern analytics to optimise operations at scale.</p>
             <div class="expertise-grid">
                 <div class="expertise-card reveal"><i class="fas fa-chart-line"></i><h3>Process Optimisation</h3><p>DMAIC methodology, root cause analysis, and continuous improvement driving measurable efficiency gains.</p></div>
                 <div class="expertise-card reveal"><i class="fas fa-database"></i><h3>Data Analytics & BI</h3><p>Power BI dashboards, KPI tracking, and performance reporting turning raw data into actionable intelligence.</p></div>
@@ -833,8 +952,8 @@
     <section class="experience" id="experience">
         <div class="container">
             <p class="section-label reveal">Career</p>
-            <h2 class="section-title reveal">Professional Experience</h2>
-            <p class="section-desc reveal">A progression from hands-on manufacturing to operations engineering and data-driven decision making.</p>
+            <h2 class="section-title reveal" data-en="Professional Experience" data-de="Berufserfahrung">Professional Experience</h2>
+            <p class="section-desc reveal" data-en="A progression from hands-on manufacturing to operations engineering and data-driven decision making." data-de="Ein Werdegang von der praktischen Fertigung zum Operations Engineering und datengestützter Entscheidungsfindung.">A progression from hands-on manufacturing to operations engineering and data-driven decision making.</p>
             <div class="timeline reveal">
                 <div class="timeline-item current">
                     <div class="timeline-date">May 2026 — Present</div>
@@ -894,6 +1013,131 @@
         </div>
     </section>
 
+    <!-- Case Studies -->
+    <section id="cases">
+        <div class="container">
+            <p class="section-label reveal">Impact</p>
+            <h2 class="section-title reveal" data-en="Project Case Studies" data-de="Projekt-Fallstudien">Project Case Studies</h2>
+            <p class="section-desc reveal" data-en="Detailed breakdown of key projects with methodology and measurable results." data-de="Detaillierte Aufschlüsselung wichtiger Projekte mit Methodik und messbaren Ergebnissen.">Detailed breakdown of key projects with methodology and measurable results.</p>
+            <div class="case-grid">
+                <div class="case-card reveal">
+                    <div class="case-header" onclick="toggleCase(this)">
+                        <div class="case-header-left">
+                            <h3 data-en="Supply Chain Reporting Transformation" data-de="Transformation der Lieferketten-Berichterstattung">Supply Chain Reporting Transformation</h3>
+                            <p>Godrej & Boyce &middot; 2023–2024</p>
+                        </div>
+                        <div class="case-tags">
+                            <span class="case-tag">Power BI</span>
+                            <span class="case-tag">SAP ERP</span>
+                            <span class="case-tag">Data Analytics</span>
+                        </div>
+                        <span class="case-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-content">
+                            <div class="case-step">
+                                <h4>Challenge</h4>
+                                <p>Manual reporting from multiple SAP sources. Senior management waited days for outdated data. No single view of procurement KPIs.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Approach</h4>
+                                <p>Built 5+ Power BI dashboards with star schema data model. Connected procurement tables, project milestones, and vendor metrics. Automated SAP data extraction.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Results</h4>
+                                <p class="case-metric">~30%</p>
+                                <p>Reduction in reporting lead time. Real-time KPIs replaced weekly email reports. Faster, data-driven decision making across leadership.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-header" onclick="toggleCase(this)">
+                        <div class="case-header-left">
+                            <h3 data-en="Quality Audit & Defect Reduction" data-de="Qualitätsaudit & Fehlerreduzierung">Quality Audit & Defect Reduction</h3>
+                            <p>Godrej & Boyce &middot; 2023–2024</p>
+                        </div>
+                        <div class="case-tags">
+                            <span class="case-tag">DMAIC</span>
+                            <span class="case-tag">Six Sigma</span>
+                            <span class="case-tag">Quality</span>
+                        </div>
+                        <span class="case-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-content">
+                            <div class="case-step">
+                                <h4>Challenge</h4>
+                                <p>Recurring defects across multiple sites despite corrective actions. Same issues reappearing quarter after quarter. No root-cause standardisation.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Approach</h4>
+                                <p>Applied full DMAIC cycle. Pareto analysis identified 3 categories = 70% of defects. Root cause: inconsistent documentation. Standardised procedures and visual work instructions.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Results</h4>
+                                <p class="case-metric">25%</p>
+                                <p>Reduction in recurring defects. Standardised audit checklists across all sites. Trend dashboards for immediate deviation visibility.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-header" onclick="toggleCase(this)">
+                        <div class="case-header-left">
+                            <h3 data-en="3D Simulation with Augmented Reality" data-de="3D-Simulation mit Augmented Reality">3D Simulation with Augmented Reality</h3>
+                            <p>Hochschule Fresenius &middot; 2025–2026</p>
+                        </div>
+                        <div class="case-tags">
+                            <span class="case-tag">AR</span>
+                            <span class="case-tag">AI</span>
+                            <span class="case-tag">Industry 4.0</span>
+                        </div>
+                        <span class="case-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-content">
+                            <div class="case-step">
+                                <h4>Challenge</h4>
+                                <p>Gap between CAD models on screens and physical shop floors. No spatial context for layout decisions. Slow onboarding of new operators.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Approach</h4>
+                                <p>Developed AI-driven visualisation tools integrating 3D CAD with AR headsets. ML models analysed production data to predict bottlenecks and suggest optimal layouts.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Results</h4>
+                                <p class="case-metric">Research</p>
+                                <p>Completed prototype demonstrating spatial process visualisation. Applications in training, layout planning, maintenance guidance, and quality inspection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" style="background: var(--bg);">
+        <div class="container">
+            <p class="section-label reveal">Recommendations</p>
+            <h2 class="section-title reveal" data-en="What People Say" data-de="Was andere sagen">What People Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"Aman consistently delivered high-quality work under tight deadlines. His Power BI dashboards transformed how our leadership team makes decisions. A reliable, data-driven professional."</p>
+                    <div class="testimonial-author">Senior Project Manager</div>
+                    <div class="testimonial-role">Godrej & Boyce Manufacturing</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"Demonstrated strong analytical thinking and a methodical approach to problem-solving. His research on AR integration in manufacturing showed exceptional initiative for Industry 4.0 applications."</p>
+                    <div class="testimonial-author">Professor, Industrial Engineering</div>
+                    <div class="testimonial-role">Hochschule Fresenius, Cologne</div>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:20px; font-size:0.75rem; color:var(--light); font-style:italic;" data-en="More recommendations available on LinkedIn" data-de="Weitere Empfehlungen auf LinkedIn verfügbar">More recommendations available on <a href="https://www.linkedin.com/in/amndlal" target="_blank" style="color:var(--mid);">LinkedIn</a></p>
+        </div>
+    </section>
+
     <!-- Open to Work -->
     <div class="open-to-work">
         <div class="otw-inner">
@@ -908,8 +1152,8 @@
     <section class="blog" id="blog">
         <div class="container">
             <p class="section-label reveal">Insights</p>
-            <h2 class="section-title reveal">Writing & Learnings</h2>
-            <p class="section-desc reveal">Reflections from projects, process improvements, and research.</p>
+            <h2 class="section-title reveal" data-en="Writing & Learnings" data-de="Artikel & Erkenntnisse">Writing & Learnings</h2>
+            <p class="section-desc reveal" data-en="Reflections from projects, process improvements, and research." data-de="Erkenntnisse aus Projekten, Prozessverbesserungen und Forschung.">Reflections from projects, process improvements, and research.</p>
             <div class="blog-grid">
                 <div class="blog-card reveal" onclick="openBlog(0)"><div class="blog-img" style="background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80') center/cover;"></div><div class="blog-body"><div class="blog-tag">Data Analytics</div><h3>How Power BI Transformed Our Supply Chain Reporting</h3><p>Reducing reporting lead time by 30% with real-time dashboards.</p><div class="blog-read-time"><i class="far fa-clock"></i> 4 min read</div></div></div>
                 <div class="blog-card reveal" onclick="openBlog(1)"><div class="blog-img" style="background: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80') center/cover;"></div><div class="blog-body"><div class="blog-tag">Lean Six Sigma</div><h3>Applying DMAIC in Real-World Quality Audits</h3><p>Cutting recurring defects by 25% across multiple sites.</p><div class="blog-read-time"><i class="far fa-clock"></i> 5 min read</div></div></div>
@@ -922,8 +1166,8 @@
     <section id="contact">
         <div class="container">
             <p class="section-label reveal">Contact</p>
-            <h2 class="section-title reveal">Let's Connect</h2>
-            <p class="section-desc reveal">Open to opportunities across Germany and internationally.</p>
+            <h2 class="section-title reveal" data-en="Let's Connect" data-de="Kontakt aufnehmen">Let's Connect</h2>
+            <p class="section-desc reveal" data-en="Open to opportunities across Germany and internationally." data-de="Offen für Möglichkeiten in ganz Deutschland und international.">Open to opportunities across Germany and internationally.</p>
             <div class="contact-grid">
                 <div class="contact-left reveal">
                     <h3>Get in touch</h3>
@@ -1068,6 +1312,66 @@
             const n = document.querySelector('.nav-center');
             if (n.style.display === 'flex') { n.style.display = 'none'; }
             else { n.style.display = 'flex'; n.style.position = 'absolute'; n.style.top = '56px'; n.style.left = '0'; n.style.right = '0'; n.style.background = 'var(--white)'; n.style.flexDirection = 'column'; n.style.padding = '16px 20px'; n.style.borderBottom = '1px solid var(--border)'; n.style.gap = '14px'; }
+        }
+
+        // Case study toggle
+        function toggleCase(header) {
+            const card = header.closest('.case-card');
+            card.classList.toggle('open');
+        }
+
+        // Language toggle
+        let currentLang = 'en';
+        const translations = {
+            de: {
+                'Operations · Engineering · Analytics': 'Betriebstechnik · Ingenieurwesen · Analytik',
+                'Driving Operational<br>Excellence Through<br>': 'Operative Exzellenz<br>durch ',
+                'Operations Engineer at Amazon with a background in project management, Lean Six Sigma, and industrial analytics. I turn complex processes into efficient, measurable systems.': 'Operations Engineer bei Amazon mit Hintergrund in Projektmanagement, Lean Six Sigma und industrieller Analytik. Ich verwandle komplexe Prozesse in effiziente, messbare Systeme.',
+                'Years Experience': 'Jahre Erfahrung',
+                'Lead Time Reduced': 'Durchlaufzeit reduziert',
+                'Defects Eliminated': 'Fehler beseitigt',
+                'View Experience': 'Erfahrung ansehen',
+                'Get in Touch': 'Kontakt aufnehmen',
+                'Download CV': 'Lebenslauf herunterladen',
+                'Associated with': 'Verbunden mit',
+                'About': 'Über mich',
+                'Expertise': 'Fachkompetenz',
+                'Experience': 'Erfahrung',
+                'Insights': 'Einblicke',
+                'Contact': 'Kontakt',
+                'Engineering Mindset,<br>Business Impact': 'Ingenieur-Denkweise,<br>Geschäftliche Wirkung',
+                'Core Expertise': 'Kernkompetenzen',
+                'Combining engineering fundamentals with modern analytics to optimise operations at scale.': 'Kombination von Ingenieursgrundlagen mit moderner Analytik zur Optimierung von Betriebsabläufen.',
+                'Professional Experience': 'Berufserfahrung',
+                'A progression from hands-on manufacturing to operations engineering and data-driven decision making.': 'Ein Werdegang von der praktischen Fertigung zum Operations Engineering und datengestützter Entscheidungsfindung.',
+                'Academic Background': 'Akademischer Hintergrund',
+                'Certifications': 'Zertifizierungen',
+                'Writing & Learnings': 'Artikel & Erkenntnisse',
+                'Reflections from projects, process improvements, and research.': 'Erkenntnisse aus Projekten, Prozessverbesserungen und Forschung.',
+                "Let's Connect": 'Kontakt aufnehmen',
+                'Open to opportunities across Germany and internationally.': 'Offen für Möglichkeiten in ganz Deutschland und international.',
+                'Get in touch': 'Schreiben Sie mir',
+                "Whether it's a job opportunity, collaboration, or simply a conversation about engineering and operations — I'd be happy to hear from you.": 'Ob Jobangebot, Zusammenarbeit oder einfach ein Gespräch über Technik und Betrieb — ich freue mich von Ihnen zu hören.',
+                'Send Message': 'Nachricht senden',
+                'I typically respond within 24 hours.': 'Ich antworte in der Regel innerhalb von 24 Stunden.',
+                'Target Roles': 'Zielrollen',
+                'Industries': 'Branchen',
+                'Location': 'Standort',
+                'Availability': 'Verfügbarkeit',
+                'Immediately available': 'Sofort verfügbar',
+                'No sponsorship needed': 'Kein Sponsoring nötig',
+                'Open to relocation': 'Umzugsbereit',
+            }
+        };
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            document.querySelector('.lang-toggle').textContent = currentLang.toUpperCase();
+            document.documentElement.lang = currentLang;
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerHTML = el.getAttribute('data-' + currentLang) || el.getAttribute('data-en');
+            });
         }
 
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBlog(); });
