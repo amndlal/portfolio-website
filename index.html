@@ -451,6 +451,68 @@
             line-height: 1.7;
         }
 
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .cert-card {
+            display: flex;
+            gap: 20px;
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            border-color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+
+        .cert-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--black);
+            flex-shrink: 0;
+        }
+
+        .cert-info h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .cert-issuer {
+            font-size: 0.85rem;
+            color: var(--mid);
+            margin-bottom: 8px;
+        }
+
+        .cert-detail {
+            font-size: 0.8rem;
+            color: var(--light);
+            margin-bottom: 6px;
+        }
+
+        .cert-scope {
+            font-size: 0.78rem;
+            color: var(--light);
+            font-style: italic;
+        }
+
         /* Blog */
         .blog { background: var(--bg); }
 
@@ -734,7 +796,7 @@
             .hero h1 { font-size: 2.5rem; }
             .hero-meta { justify-content: center; }
             .hero-actions { justify-content: center; }
-            .about-content, .contact-grid, .education-grid { grid-template-columns: 1fr; }
+            .about-content, .contact-grid, .education-grid, .cert-grid { grid-template-columns: 1fr; }
             .expertise-grid, .blog-grid { grid-template-columns: 1fr; }
             .about-highlights { grid-template-columns: 1fr 1fr; }
             .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
@@ -764,21 +826,22 @@
             <p class="hero-desc">Operations Engineer at Amazon with a background in project management, Lean Six Sigma, and industrial analytics. I turn complex processes into efficient, measurable systems.</p>
             <div class="hero-meta">
                 <div class="hero-meta-item">
-                    <strong>2+</strong>
+                    <strong data-count="2" data-suffix="+">0</strong>
                     <span>Years Experience</span>
                 </div>
                 <div class="hero-meta-item">
-                    <strong>30%</strong>
+                    <strong data-count="30" data-suffix="%">0</strong>
                     <span>Lead Time Reduced</span>
                 </div>
                 <div class="hero-meta-item">
-                    <strong>25%</strong>
+                    <strong data-count="25" data-suffix="%">0</strong>
                     <span>Defects Eliminated</span>
                 </div>
             </div>
             <div class="hero-actions">
                 <a href="#experience" class="btn btn-dark">View Experience</a>
                 <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                <a href="Aman_Dalal_CV.pdf" download class="btn btn-outline"><i class="fas fa-download" style="margin-right:6px;"></i>Download CV</a>
             </div>
         </div>
         <div class="hero-right">
@@ -802,19 +865,19 @@
                 <div class="reveal">
                     <div class="about-highlights">
                         <div class="highlight-card">
-                            <strong>3</strong>
+                            <strong data-count="3" data-suffix="">0</strong>
                             <span>Major Projects Managed</span>
                         </div>
                         <div class="highlight-card">
-                            <strong>5+</strong>
+                            <strong data-count="5" data-suffix="+">0</strong>
                             <span>BI Dashboards Built</span>
                         </div>
                         <div class="highlight-card">
-                            <strong>95%</strong>
+                            <strong data-count="95" data-suffix="%">0</strong>
                             <span>On-Time Delivery</span>
                         </div>
                         <div class="highlight-card">
-                            <strong>10+</strong>
+                            <strong data-count="10" data-suffix="+">0</strong>
                             <span>Team Members Led</span>
                         </div>
                     </div>
@@ -942,6 +1005,34 @@
                     <div class="edu-school">Maharshi Dayanand University</div>
                     <div class="edu-date">2017 — 2021</div>
                     <p>Foundation in thermodynamics, manufacturing processes, materials science, and mechanical design principles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+        <div class="container">
+            <p class="section-label reveal">Credentials</p>
+            <h2 class="section-title reveal">Certifications & Licences</h2>
+            <div class="cert-grid">
+                <div class="cert-card reveal">
+                    <div class="cert-icon"><i class="fas fa-award"></i></div>
+                    <div class="cert-info">
+                        <h3>Lean Six Sigma Green Belt</h3>
+                        <p class="cert-issuer">Six Sigma Management Academy, Cologne</p>
+                        <p class="cert-detail">Issued July 2025 &middot; Certified by MBB Doz. Dipl.-Ing. Philip Bauer (Master Black Belt)</p>
+                        <p class="cert-scope">DMAIC &middot; Statistical Process Control &middot; Root-Cause Analysis &middot; Waste Elimination &middot; Process Optimisation</p>
+                    </div>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="cert-info">
+                        <h3>MSc Industrial Engineering (In Progress)</h3>
+                        <p class="cert-issuer">Hochschule Fresenius, Cologne</p>
+                        <p class="cert-detail">2025 – 2027 &middot; Smart Production &middot; Industry 4.0 &middot; Digitalisation & AI</p>
+                        <p class="cert-scope">Grade highlights: 1.3 Smart Technology Applications &middot; 1.7 German &middot; 2.0 Quality Management</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1084,6 +1175,27 @@
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Animated counters
+        const counterObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count);
+                    const suffix = el.dataset.suffix || '';
+                    let current = 0;
+                    const duration = 1500;
+                    const step = target / (duration / 16);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) { el.textContent = target + suffix; clearInterval(timer); }
+                        else { el.textContent = Math.floor(current) + suffix; }
+                    }, 16);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
         // Nav scroll
         window.addEventListener('scroll', () => {
