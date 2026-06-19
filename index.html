@@ -82,31 +82,6 @@
             color: var(--black);
         }
 
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            color: var(--dark);
-            transition: opacity 0.3s;
-        }
-
-        .cart-icon:hover {
-            opacity: 0.6;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--black);
-            color: white;
-            font-size: 0.6rem;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
 
         .mobile-menu {
             display: none;
@@ -459,119 +434,6 @@
             text-decoration: underline;
         }
 
-        /* Shop */
-        .shop {
-            background: linear-gradient(rgba(250,250,250,0.94), rgba(250,250,250,0.94)), url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1920&q=80') center/cover no-repeat;
-        }
-
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .product-image {
-            height: 180px;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .product-info {
-            padding: 18px;
-        }
-
-        .product-info h3 {
-            font-size: 0.95rem;
-            margin-bottom: 6px;
-            color: var(--black);
-        }
-
-        .price {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--black);
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: var(--light-gray);
-            font-size: 0.8rem;
-            margin-left: 6px;
-        }
-
-        .product-rating {
-            font-size: 0.75rem;
-            color: var(--light-gray);
-            margin: 6px 0 12px;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            padding: 10px;
-            background: var(--black);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .add-to-cart:hover {
-            background: var(--dark);
-        }
-
-        /* Payment Methods */
-        .payment-methods {
-            text-align: center;
-            margin-top: 50px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .payment-methods h4 {
-            color: var(--light-gray);
-            font-weight: 400;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .payment-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .payment-icon {
-            font-size: 1.5rem;
-            color: var(--light-gray);
-            transition: color 0.3s;
-        }
-
-        .payment-icon:hover {
-            color: var(--dark);
-        }
 
         /* Testimonials */
         .testimonials {
@@ -836,264 +698,6 @@
             margin: 0 auto;
         }
 
-        /* Cart Sidebar */
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -420px;
-            width: 400px;
-            height: 100vh;
-            background: white;
-            border-left: 1px solid var(--border);
-            z-index: 10000;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-sidebar.open {
-            right: 0;
-        }
-
-        .cart-header {
-            padding: 25px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-header h3 {
-            font-size: 1.1rem;
-        }
-
-        .cart-close {
-            cursor: pointer;
-            color: var(--light-gray);
-            transition: color 0.3s;
-        }
-
-        .cart-close:hover {
-            color: var(--dark);
-        }
-
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .cart-item-image {
-            width: 50px;
-            height: 50px;
-            background: var(--bg);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        .cart-item-details {
-            flex: 1;
-        }
-
-        .cart-item-details h4 {
-            font-size: 0.85rem;
-            margin-bottom: 3px;
-        }
-
-        .cart-item-price {
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 5px;
-        }
-
-        .qty-btn {
-            width: 22px;
-            height: 22px;
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            background: white;
-            cursor: pointer;
-            font-size: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .qty-btn:hover {
-            border-color: var(--dark);
-        }
-
-        .cart-item-remove {
-            cursor: pointer;
-            color: var(--light-gray);
-            align-self: center;
-            font-size: 0.8rem;
-        }
-
-        .cart-item-remove:hover {
-            color: var(--dark);
-        }
-
-        .cart-footer {
-            padding: 20px 25px;
-            border-top: 1px solid var(--border);
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--black);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .checkout-btn:hover {
-            background: var(--dark);
-        }
-
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.3);
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .cart-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--light-gray);
-        }
-
-        .empty-cart i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            opacity: 0.4;
-        }
-
-        /* Checkout Modal */
-        .checkout-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            z-index: 20000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .checkout-modal.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .checkout-content {
-            background: white;
-            border-radius: 8px;
-            padding: 35px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .checkout-content h2 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 20px;
-        }
-
-        .payment-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 25px;
-        }
-
-        .payment-option {
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.75rem;
-            color: var(--mid);
-        }
-
-        .payment-option.selected {
-            border-color: var(--black);
-            color: var(--black);
-        }
-
-        .payment-option i {
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .checkout-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .checkout-form input {
-            width: 100%;
-            padding: 11px 14px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .checkout-form input:focus {
-            outline: none;
-            border-color: var(--dark);
-        }
-
-        .checkout-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
 
         /* Blog Modal */
         .blog-modal {
@@ -1191,12 +795,6 @@
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .shop-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 25px;
@@ -1223,9 +821,6 @@
             .services-grid, .portfolio-grid, .blog-grid, .testimonial-grid {
                 grid-template-columns: 1fr;
             }
-            .shop-grid {
-                grid-template-columns: 1fr;
-            }
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 25px;
@@ -1236,13 +831,6 @@
             }
             .form-row {
                 grid-template-columns: 1fr;
-            }
-            .payment-options {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
             }
         }
     </style>
@@ -1257,13 +845,8 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Experience</a></li>
             <li><a href="#blog">Blog</a></li>
-            <li><a href="#shop">Shop</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="cart-icon" onclick="toggleCart()">
-            <i class="fas fa-shopping-bag"></i>
-            <span class="cart-count" id="cartCount">0</span>
-        </div>
         <div class="mobile-menu" onclick="toggleMobileMenu()">
             <i class="fas fa-bars"></i>
         </div>
@@ -1446,100 +1029,6 @@
         </div>
     </section>
 
-    <!-- Shop -->
-    <section class="shop" id="shop">
-        <div class="section-header">
-            <h2>Shop</h2>
-            <p>Digital products and resources</p>
-        </div>
-        <div class="shop-grid">
-            <div class="product-card reveal">
-                <div class="product-image">📱</div>
-                <div class="product-info">
-                    <h3>UI Kit Pro</h3>
-                    <div><span class="price">$49</span><span class="old-price">$79</span></div>
-                    <div class="product-rating">★★★★★ (128)</div>
-                    <button class="add-to-cart" onclick="addToCart('UI Kit Pro', 49, '📱')">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">🎨</div>
-                <div class="product-info">
-                    <h3>Icon Pack 3000+</h3>
-                    <div><span class="price">$29</span><span class="old-price">$49</span></div>
-                    <div class="product-rating">★★★★★ (256)</div>
-                    <button class="add-to-cart" onclick="addToCart('Icon Pack 3000+', 29, '🎨')">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">📘</div>
-                <div class="product-info">
-                    <h3>Dev Course Bundle</h3>
-                    <div><span class="price">$99</span><span class="old-price">$199</span></div>
-                    <div class="product-rating">★★★★☆ (89)</div>
-                    <button class="add-to-cart" onclick="addToCart('Dev Course Bundle', 99, '📘')">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">🖼️</div>
-                <div class="product-info">
-                    <h3>Template Collection</h3>
-                    <div><span class="price">$39</span><span class="old-price">$69</span></div>
-                    <div class="product-rating">★★★★★ (175)</div>
-                    <button class="add-to-cart" onclick="addToCart('Template Collection', 39, '🖼️')">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">⚡</div>
-                <div class="product-info">
-                    <h3>Performance Toolkit</h3>
-                    <div><span class="price">$59</span></div>
-                    <div class="product-rating">★★★★★ (64)</div>
-                    <button class="add-to-cart" onclick="addToCart('Performance Toolkit', 59, '⚡')">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">🔧</div>
-                <div class="product-info">
-                    <h3>Component Library</h3>
-                    <div><span class="price">$79</span><span class="old-price">$129</span></div>
-                    <div class="product-rating">★★★★☆ (42)</div>
-                    <button class="add-to-cart" onclick="addToCart('Component Library', 79, '🔧')">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">🎬</div>
-                <div class="product-info">
-                    <h3>Animation Pack</h3>
-                    <div><span class="price">$35</span><span class="old-price">$55</span></div>
-                    <div class="product-rating">★★★★★ (93)</div>
-                    <button class="add-to-cart" onclick="addToCart('Animation Pack', 35, '🎬')">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">💎</div>
-                <div class="product-info">
-                    <h3>Premium Bundle</h3>
-                    <div><span class="price">$149</span><span class="old-price">$299</span></div>
-                    <div class="product-rating">★★★★★ (312)</div>
-                    <button class="add-to-cart" onclick="addToCart('Premium Bundle', 149, '💎')">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="payment-methods">
-            <h4>Accepted payment methods</h4>
-            <div class="payment-icons">
-                <span class="payment-icon"><i class="fab fa-cc-visa"></i></span>
-                <span class="payment-icon"><i class="fab fa-cc-mastercard"></i></span>
-                <span class="payment-icon"><i class="fab fa-cc-amex"></i></span>
-                <span class="payment-icon"><i class="fab fa-cc-paypal"></i></span>
-                <span class="payment-icon"><i class="fab fa-cc-stripe"></i></span>
-                <span class="payment-icon"><i class="fab fa-apple-pay"></i></span>
-                <span class="payment-icon"><i class="fab fa-google-pay"></i></span>
-                <span class="payment-icon"><i class="fab fa-bitcoin"></i></span>
-            </div>
-        </div>
-    </section>
 
     <!-- Testimonials -->
     <section class="testimonials">
@@ -1657,7 +1146,7 @@
             <div class="footer-col">
                 <h4>More</h4>
                 <a href="#blog">Blog</a>
-                <a href="#shop">Resources</a>
+                <a href="#contact">Contact</a>
                 <a href="https://www.linkedin.com/in/amndlal" target="_blank">LinkedIn</a>
                 <a href="https://github.com/amndlal" target="_blank">GitHub</a>
             </div>
@@ -1673,82 +1162,6 @@
         </div>
     </footer>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-overlay" onclick="toggleCart()"></div>
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Cart</h3>
-            <span class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></span>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart">
-                <i class="fas fa-shopping-bag"></i>
-                <p>Your cart is empty</p>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total</span>
-                <span id="cartTotal">$0</span>
-            </div>
-            <button class="checkout-btn" onclick="openCheckout()">Checkout</button>
-        </div>
-    </div>
-
-    <!-- Checkout Modal -->
-    <div class="checkout-modal" id="checkoutModal">
-        <div class="checkout-content">
-            <h2>Checkout</h2>
-            <p style="color: var(--light-gray); margin-bottom: 20px; font-size: 0.9rem;">Select payment method</p>
-            <div class="payment-options">
-                <div class="payment-option selected" onclick="selectPayment(this)">
-                    <i class="fas fa-credit-card"></i>
-                    Card
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <i class="fab fa-paypal"></i>
-                    PayPal
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <i class="fab fa-apple-pay"></i>
-                    Apple Pay
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <i class="fab fa-google-pay"></i>
-                    Google Pay
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <i class="fab fa-bitcoin"></i>
-                    Crypto
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <i class="fas fa-university"></i>
-                    Bank
-                </div>
-            </div>
-            <form class="checkout-form" onsubmit="processPayment(event)">
-                <div class="form-row">
-                    <input type="text" placeholder="Full name" required>
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <input type="text" placeholder="Card number" maxlength="19">
-                <div class="form-row">
-                    <input type="text" placeholder="MM/YY" maxlength="5">
-                    <input type="text" placeholder="CVV" maxlength="4">
-                </div>
-                <input type="text" placeholder="Billing address">
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 5px;">
-                    Pay <span id="checkoutTotal">$0</span>
-                </button>
-            </form>
-            <p style="text-align: center; margin-top: 12px; font-size: 0.75rem; color: var(--light-gray);">
-                <i class="fas fa-lock"></i> Secure 256-bit encryption
-            </p>
-            <p style="text-align: center; margin-top: 10px;">
-                <span style="cursor: pointer; color: var(--light-gray); font-size: 0.85rem;" onclick="closeCheckout()">Cancel</span>
-            </p>
-        </div>
-    </div>
 
     <!-- Blog Modal -->
     <div class="blog-modal" id="blogModal">
@@ -1814,8 +1227,6 @@
             }
         ];
 
-        let cart = [];
-
         // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1841,85 +1252,6 @@
             });
         }
 
-        // Cart
-        function addToCart(name, price, emoji) {
-            const existing = cart.find(item => item.name === name);
-            if (existing) existing.qty++;
-            else cart.push({ name, price, emoji, qty: 1 });
-            updateCart();
-            showToast(`${name} added to cart`);
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        function updateQty(index, delta) {
-            cart[index].qty += delta;
-            if (cart[index].qty <= 0) cart.splice(index, 1);
-            updateCart();
-        }
-
-        function updateCart() {
-            const cartItems = document.getElementById('cartItems');
-            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-            document.getElementById('cartCount').textContent = totalItems;
-            document.getElementById('cartTotal').textContent = '$' + totalPrice;
-            document.getElementById('checkoutTotal').textContent = '$' + totalPrice;
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-bag"></i><p>Your cart is empty</p></div>';
-                return;
-            }
-
-            cartItems.innerHTML = cart.map((item, i) => `
-                <div class="cart-item">
-                    <div class="cart-item-image">${item.emoji}</div>
-                    <div class="cart-item-details">
-                        <h4>${item.name}</h4>
-                        <span class="cart-item-price">$${item.price}</span>
-                        <div class="qty-controls">
-                            <button class="qty-btn" onclick="updateQty(${i}, -1)">-</button>
-                            <span>${item.qty}</span>
-                            <button class="qty-btn" onclick="updateQty(${i}, 1)">+</button>
-                        </div>
-                    </div>
-                    <span class="cart-item-remove" onclick="removeFromCart(${i})"><i class="fas fa-trash"></i></span>
-                </div>
-            `).join('');
-        }
-
-        function toggleCart() {
-            document.getElementById('cartSidebar').classList.toggle('open');
-            document.querySelector('.cart-overlay').classList.toggle('open');
-        }
-
-        // Checkout
-        function openCheckout() {
-            if (cart.length === 0) { showToast('Cart is empty'); return; }
-            toggleCart();
-            document.getElementById('checkoutModal').classList.add('open');
-        }
-
-        function closeCheckout() {
-            document.getElementById('checkoutModal').classList.remove('open');
-        }
-
-        function selectPayment(el) {
-            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-            el.classList.add('selected');
-        }
-
-        function processPayment(e) {
-            e.preventDefault();
-            closeCheckout();
-            cart = [];
-            updateCart();
-            showToast('Payment successful!');
-        }
 
         // Blog
         function openBlog(index) {
@@ -1980,8 +1312,6 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeBlog();
-                closeCheckout();
-                if (document.getElementById('cartSidebar').classList.contains('open')) toggleCart();
             }
         });
     </script>
