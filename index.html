@@ -1607,20 +1607,21 @@
                     <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
                 </div>
             </div>
-            <form class="contact-form reveal" onsubmit="submitContact(event)">
+            <form class="contact-form reveal" action="https://formspree.io/f/xdavrryw" method="POST">
                 <div class="form-row">
-                    <input type="text" placeholder="First name" required>
-                    <input type="text" placeholder="Last name" required>
+                    <input type="text" name="first_name" placeholder="First name" required>
+                    <input type="text" name="last_name" placeholder="Last name" required>
                 </div>
-                <input type="email" placeholder="Email" required>
-                <select required>
+                <input type="email" name="email" placeholder="Email" required>
+                <select name="subject" required>
                     <option value="">Subject</option>
                     <option>Project Inquiry</option>
                     <option>Collaboration</option>
                     <option>Job Opportunity</option>
                     <option>General Question</option>
                 </select>
-                <textarea placeholder="Your message..." required></textarea>
+                <textarea name="message" placeholder="Your message..." required></textarea>
+                <input type="hidden" name="_next" value="https://amndlal.github.io/portfolio-website/">
                 <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
             </form>
         </div>
