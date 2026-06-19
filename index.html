@@ -1158,7 +1158,7 @@
             <li><a href="#contact" data-en="Contact" data-de="Kontakt">Contact</a></li>
         </ul>
         <div class="nav-right">
-            <button class="nav-btn lang-toggle" onclick="toggleLang()" title="Sprache wechseln / Switch language">EN</button>
+            <button class="nav-btn lang-toggle" onclick="toggleLang()" title="Sprache wechseln / Switch language">DE</button>
             <button class="nav-btn" onclick="toggleTheme()" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
             <div class="nav-mobile" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         </div>
@@ -1720,10 +1720,11 @@
 
         function toggleLang() {
             currentLang = currentLang === 'en' ? 'de' : 'en';
-            document.querySelector('.lang-toggle').textContent = currentLang.toUpperCase();
+            document.querySelector('.lang-toggle').textContent = currentLang === 'en' ? 'DE' : 'EN';
             document.documentElement.lang = currentLang;
 
             document.querySelectorAll('[data-en]').forEach(el => {
+                if (el.hasAttribute('data-count')) return;
                 el.innerHTML = el.getAttribute('data-' + currentLang) || el.getAttribute('data-en');
             });
         }
