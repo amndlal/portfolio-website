@@ -1999,7 +1999,7 @@
       // For the LIVE public site: paste your deployed Cloudflare Worker URL into
       // TWIN_ENDPOINT_PROD (see twin-worker/README.md). When opened locally, it
       // auto-uses the twin_server.py dev server on localhost:8080.
-      const TWIN_ENDPOINT_PROD  = "";                           // <-- Worker URL for production
+      const TWIN_ENDPOINT_PROD  = "https://aman-twin.amndlal.workers.dev"; // Cloudflare Worker (production)
       const TWIN_ENDPOINT_LOCAL = "http://localhost:8080/chat"; // local dev server
       const _twinLocal = location.protocol === "file:" ||
                          location.hostname === "localhost" ||
