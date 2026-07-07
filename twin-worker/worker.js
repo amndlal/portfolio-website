@@ -71,7 +71,8 @@ const SYSTEM_PROMPT = `You ARE Aman Dalal — speaking in the first person on yo
 How to behave:
 - ALWAYS speak as Aman himself, in the first person ("I", "my", "me"). Never refer to "Aman" in the third person and never say you are "Aman's assistant" — you ARE Aman.
 - For questions about your career, experience, skills, education, or availability: answer ONLY from the profile below. Never invent employers, job titles, dates, or metrics. If a personal detail (salary, private life) isn't in the profile, say you'd rather discuss that directly and point them to amandalal0708@gmail.com or LinkedIn.
-- You can ALSO help with general questions on any topic (definitions, explanations, advice, current events, small talk) — answer those helpfully and accurately, still as yourself. When live web-search results are provided, use them for current facts.
+- You can ALSO help with general questions on any topic (definitions, explanations, advice, small talk) — answer those helpfully and accurately, still as yourself. When Wikipedia reference info is provided, use it.
+- Be honest about currency: your general knowledge has a training cutoff. For "latest/newest/current" questions where no reference info is provided (or it doesn't clearly answer it), say plainly that you may not have the most recent details and suggest checking a current source — do NOT guess or fabricate recent events, releases, or figures.
 - If asked whether you're available for work: yes — I'm open to Operations Engineer, Project Manager, and Process Improvement roles across Germany, with a work permit valid until January 2028.
 - Keep answers concise and professional; recruiters may be reading.
 
@@ -110,9 +111,10 @@ export default {
     }
     if (convo.length < 2) return json({ error: "no messages provided" }, 400);
 
-    // Free live web search (Wikipedia + DuckDuckGo, no API key). If the latest
-    // user message looks like it needs current/general facts, fetch context and
-    // inject it so the model isn't limited to its training cutoff.
+    // Free Wikipedia lookup (no API key). Cloudflare's edge can reach Wikipedia
+    // reliably (unlike general search engines, which block Worker IPs). Good for
+    // named topics/concepts/events; when it returns nothing useful, the prompt
+    // tells the model to be honest about its knowledge cutoff rather than guess.
     const lastUser = [...incoming].reverse().find((m) => m.role === "user");
     if (lastUser && lastUser.content) {
       const ctx = await webSearch(String(lastUser.content));
@@ -120,9 +122,8 @@ export default {
         convo.splice(1, 0, {
           role: "system",
           content:
-            "Live web search results for the user's question (use these for any " +
-            "current or factual info; they are more up-to-date than your training " +
-            "data). If they don't cover it, answer from your own knowledge:\n\n" + ctx,
+            "Reference info from Wikipedia for the user's question (use it if " +
+            "relevant; it may be more current than your training data):\n\n" + ctx,
         });
       }
     }
@@ -173,60 +174,46 @@ function shouldSearch(q) {
   return true;
 }
 
+// Wikipedia is the one search source Cloudflare's edge can reach reliably —
+// general search engines (DuckDuckGo/Google/Bing) block Worker IPs or need paid
+// keys. So we search Wikipedia and pull rich intro extracts of the top hits.
 async function webSearch(query) {
   if (!shouldSearch(query)) return "";
-  const parts = [];
   try {
-    const [wiki, ddg] = await Promise.allSettled([
-      searchWikipedia(query),
-      searchDuckDuckGo(query),
-    ]);
-    if (wiki.status === "fulfilled" && wiki.value) parts.push(wiki.value);
-    if (ddg.status === "fulfilled" && ddg.value) parts.push(ddg.value);
+    const api = "https://en.wikipedia.org/w/api.php?" + new URLSearchParams({
+      action: "query", list: "search", srsearch: query,
+      format: "json", srlimit: "3", origin: "*",
+    });
+    const r = await fetch(api, { headers: { "User-Agent": SEARCH_UA } });
+    if (!r.ok) return "";
+    const d = await r.json();
+    const hits = d?.query?.search || [];
+    if (!hits.length) return "";
+
+    // Fetch plain-text intro extracts for the top 2 hits (real detail, not just
+    // the search snippet).
+    const titles = hits.slice(0, 2).map((h) => h.title);
+    const ex = "https://en.wikipedia.org/w/api.php?" + new URLSearchParams({
+      action: "query", prop: "extracts", exintro: "1", explaintext: "1",
+      titles: titles.join("|"), format: "json", origin: "*",
+    });
+    let extracts = {};
+    try {
+      const er = await fetch(ex, { headers: { "User-Agent": SEARCH_UA } });
+      if (er.ok) {
+        const ed = await er.json();
+        for (const p of Object.values(ed?.query?.pages || {})) {
+          if (p.extract) extracts[p.title] = p.extract;
+        }
+      }
+    } catch { /* extracts optional */ }
+
+    const parts = hits.slice(0, 3).map((h) => {
+      const body = extracts[h.title] || h.snippet.replace(/<[^>]+>/g, "");
+      return `${h.title}: ${body}`;
+    });
+    return `Wikipedia:\n${parts.join("\n\n")}`.slice(0, 3500);
   } catch {
-    /* search is best-effort; ignore failures */
+    return ""; // best-effort; never block the reply
   }
-  return parts.join("\n\n").slice(0, 3000); // keep the injected context bounded
-}
-
-async function searchWikipedia(query) {
-  const api = "https://en.wikipedia.org/w/api.php?" + new URLSearchParams({
-    action: "query", list: "search", srsearch: query,
-    format: "json", srlimit: "3", origin: "*",
-  });
-  const r = await fetch(api, { headers: { "User-Agent": SEARCH_UA } });
-  if (!r.ok) return "";
-  const d = await r.json();
-  const hits = d?.query?.search || [];
-  if (!hits.length) return "";
-  // Pull a clean summary of the top hit for real detail.
-  let summary = "";
-  try {
-    const title = encodeURIComponent(hits[0].title.replace(/ /g, "_"));
-    const sr = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`,
-      { headers: { "User-Agent": SEARCH_UA } }
-    );
-    if (sr.ok) { const sd = await sr.json(); summary = sd?.extract || ""; }
-  } catch { /* summary optional */ }
-  const lines = hits.map(
-    (h) => `- ${h.title}: ${h.snippet.replace(/<[^>]+>/g, "")}`
-  );
-  return `Wikipedia:\n${summary ? summary + "\n" : ""}${lines.join("\n")}`;
-}
-
-async function searchDuckDuckGo(query) {
-  const api = "https://api.duckduckgo.com/?" + new URLSearchParams({
-    q: query, format: "json", no_html: "1", skip_disambig: "1",
-  });
-  const r = await fetch(api, { headers: { "User-Agent": SEARCH_UA } });
-  if (!r.ok) return "";
-  const d = await r.json();
-  const bits = [];
-  if (d.AbstractText) bits.push(d.AbstractText);
-  if (d.Answer) bits.push(String(d.Answer));
-  (d.RelatedTopics || []).slice(0, 3).forEach((t) => {
-    if (t && t.Text) bits.push(t.Text);
-  });
-  return bits.length ? `DuckDuckGo:\n${bits.join("\n")}` : "";
 }
