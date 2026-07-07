@@ -1,0 +1,6 @@
+name = "aman-twin"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# The OpenRouter key is NOT stored here. Set it as an encrypted secret:
+#   wrangler secret put OPENROUTER_API_KEY

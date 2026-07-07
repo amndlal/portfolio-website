@@ -1900,5 +1900,190 @@
 
         } catch(e) { console.log('Effects error:', e); }
     </script>
+
+    <!-- ===== AI Career Digital Twin ===== -->
+    <style>
+      #twinFab {
+        position: fixed; bottom: 24px; right: 24px; z-index: 9998;
+        height: 60px; padding: 0 24px 0 20px; border-radius: 32px; border: none;
+        background: linear-gradient(135deg, #6c8cff 0%, #8b5cf6 100%);
+        color: #fff; cursor: pointer; font-size: 16px; font-weight: 700;
+        font-family: inherit; letter-spacing: .2px;
+        display: flex; align-items: center; gap: 10px;
+        box-shadow: 0 8px 28px rgba(108,140,255,.55);
+        transition: transform .2s ease, box-shadow .2s ease;
+        animation: twinPulse 2.4s ease-in-out infinite;
+      }
+      #twinFab i { font-size: 20px; }
+      #twinFab:hover { transform: translateY(-3px) scale(1.04);
+        box-shadow: 0 12px 34px rgba(108,140,255,.7); animation: none; }
+      @keyframes twinPulse {
+        0%, 100% { box-shadow: 0 8px 28px rgba(108,140,255,.45); }
+        50%      { box-shadow: 0 8px 34px rgba(139,92,246,.85), 0 0 0 8px rgba(108,140,255,.12); }
+      }
+      /* Teaser bubble that draws attention on load */
+      #twinTeaser {
+        position: fixed; bottom: 96px; right: 24px; z-index: 9998;
+        max-width: 240px; padding: 12px 16px 12px 14px;
+        background: var(--card-bg); color: var(--dark);
+        border: 1px solid var(--border); border-radius: 14px 14px 4px 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.22); font-size: 14px; line-height: 1.45;
+        opacity: 0; transform: translateY(10px); pointer-events: none;
+        transition: opacity .4s ease, transform .4s ease;
+      }
+      #twinTeaser.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+      #twinTeaser b { color: var(--black); }
+      #twinTeaser .twin-teaser-x { position: absolute; top: 4px; right: 8px;
+        cursor: pointer; color: var(--light); font-size: 15px; }
+      #twinPanel {
+        position: fixed; bottom: 96px; right: 24px; z-index: 9999;
+        width: 360px; max-width: calc(100vw - 32px); height: 520px;
+        max-height: calc(100vh - 130px);
+        background: var(--card-bg); border: 1px solid var(--border);
+        border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,.3);
+        display: none; flex-direction: column; overflow: hidden;
+      }
+      #twinPanel.open { display: flex; }
+      .twin-head { padding: 14px 16px; border-bottom: 1px solid var(--border);
+        display: flex; justify-content: space-between; align-items: center; }
+      .twin-head h4 { margin: 0; font-size: 15px; color: var(--black); }
+      .twin-head p { margin: 2px 0 0; font-size: 12px; color: var(--light); }
+      .twin-close { background: none; border: none; font-size: 20px;
+        cursor: pointer; color: var(--mid); line-height: 1; }
+      #twinLog { flex: 1; overflow-y: auto; padding: 14px; }
+      .twin-msg { margin: 8px 0; display: flex; }
+      .twin-msg.user { justify-content: flex-end; }
+      .twin-bubble { padding: 9px 13px; border-radius: 13px; max-width: 82%;
+        font-size: 14px; line-height: 1.5; white-space: pre-wrap; }
+      .twin-msg.bot .twin-bubble { background: var(--bg); color: var(--dark);
+        border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+      .twin-msg.user .twin-bubble { background: var(--black); color: var(--white);
+        border-bottom-right-radius: 4px; }
+      .twin-form { display: flex; gap: 8px; padding: 12px;
+        border-top: 1px solid var(--border); }
+      .twin-form input { flex: 1; padding: 10px 12px; border-radius: 9px;
+        border: 1px solid var(--border); background: var(--white);
+        color: var(--dark); font-size: 14px; font-family: inherit; }
+      .twin-form button { padding: 10px 14px; border: none; border-radius: 9px;
+        background: var(--black); color: var(--white); font-weight: 600;
+        cursor: pointer; }
+      .twin-form button:disabled { opacity: .5; cursor: default; }
+    </style>
+
+    <div id="twinTeaser">
+      <span class="twin-teaser-x" id="twinTeaserX">&times;</span>
+      <span data-en="👋 Hi! I'm Aman's <b>AI assistant</b> — ask me anything about his career." data-de="👋 Hallo! Ich bin Amans <b>KI-Assistent</b> — frag mich alles über seine Karriere.">👋 Hi! I'm Aman's <b>AI assistant</b> — ask me anything about his career.</span>
+    </div>
+    <button id="twinFab" title="Ask Aman's AI" aria-label="Open career chat">
+      <i class="fas fa-comment-dots"></i>
+      <span data-en="Ask my AI" data-de="Frag meine KI">Ask my AI</span>
+    </button>
+    <div id="twinPanel" role="dialog" aria-label="Career chat">
+      <div class="twin-head">
+        <div>
+          <h4 data-en="Ask Aman's AI" data-de="Frag Amans KI">Ask Aman's AI</h4>
+          <p data-en="Career digital twin" data-de="Karriere-Digital-Twin">Career digital twin</p>
+        </div>
+        <button class="twin-close" id="twinClose" aria-label="Close">&times;</button>
+      </div>
+      <div id="twinLog">
+        <div class="twin-msg bot"><div class="twin-bubble">Hi! I'm Aman's AI. Ask me about his experience, skills, or availability for roles in Germany.</div></div>
+      </div>
+      <form class="twin-form" id="twinForm">
+        <input id="twinInput" autocomplete="off" placeholder="Ask about my career...">
+        <button id="twinSend" type="submit"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+
+    <script>
+      // For the LIVE public site: paste your deployed Cloudflare Worker URL into
+      // TWIN_ENDPOINT_PROD (see twin-worker/README.md). When opened locally, it
+      // auto-uses the twin_server.py dev server on localhost:8080.
+      const TWIN_ENDPOINT_PROD  = "";                           // <-- Worker URL for production
+      const TWIN_ENDPOINT_LOCAL = "http://localhost:8080/chat"; // local dev server
+      const _twinLocal = location.protocol === "file:" ||
+                         location.hostname === "localhost" ||
+                         location.hostname === "127.0.0.1";
+      const TWIN_ENDPOINT = _twinLocal ? TWIN_ENDPOINT_LOCAL : TWIN_ENDPOINT_PROD;
+
+      (function () {
+        const fab = document.getElementById('twinFab');
+        const panel = document.getElementById('twinPanel');
+        const closeBtn = document.getElementById('twinClose');
+        const log = document.getElementById('twinLog');
+        const form = document.getElementById('twinForm');
+        const input = document.getElementById('twinInput');
+        const send = document.getElementById('twinSend');
+        const teaser = document.getElementById('twinTeaser');
+        const teaserX = document.getElementById('twinTeaserX');
+        const history = [];
+
+        // Pop the teaser bubble a few seconds after load to draw the eye,
+        // then auto-dismiss it. Only once per browser session.
+        function hideTeaser() { if (teaser) teaser.classList.remove('show'); }
+        if (teaser && !sessionStorage.getItem('twinTeaserSeen')) {
+          setTimeout(() => teaser.classList.add('show'), 2500);
+          setTimeout(hideTeaser, 11000);
+          sessionStorage.setItem('twinTeaserSeen', '1');
+        }
+        if (teaserX) teaserX.addEventListener('click', (e) => { e.stopPropagation(); hideTeaser(); });
+        if (teaser) teaser.addEventListener('click', () => { fab.click(); });
+
+        fab.addEventListener('click', () => {
+          hideTeaser();
+          panel.classList.toggle('open');
+          if (panel.classList.contains('open')) input.focus();
+        });
+        closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+        function add(role, text) {
+          const wrap = document.createElement('div');
+          wrap.className = 'twin-msg ' + (role === 'user' ? 'user' : 'bot');
+          const b = document.createElement('div');
+          b.className = 'twin-bubble';
+          b.textContent = text;
+          wrap.appendChild(b);
+          log.appendChild(wrap);
+          log.scrollTop = log.scrollHeight;
+          return b;
+        }
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const q = input.value.trim();
+          if (!q) return;
+          input.value = '';
+          add('user', q);
+          history.push({ role: 'user', content: q });
+
+          if (!TWIN_ENDPOINT) {
+            add('bot', "The AI chat is being set up — please reach me at amandalal0708@gmail.com or on LinkedIn in the meantime.");
+            return;
+          }
+
+          send.disabled = true;
+          const bubble = add('bot', '…');
+          try {
+            const res = await fetch(TWIN_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ messages: history })
+            });
+            const data = await res.json();
+            if (data.error) {
+              bubble.textContent = "Sorry, I'm having trouble right now. Email me at amandalal0708@gmail.com.";
+            } else {
+              bubble.textContent = data.reply;
+              history.push({ role: 'assistant', content: data.reply });
+            }
+          } catch (err) {
+            bubble.textContent = "Couldn't reach the chat service. Email me at amandalal0708@gmail.com.";
+          } finally {
+            send.disabled = false;
+            input.focus();
+          }
+        });
+      })();
+    </script>
 </body>
 </html>
