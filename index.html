@@ -1126,6 +1126,7 @@
             .hero-desc { margin: 0 auto 30px; }
             .about-content, .contact-grid, .education-grid, .cert-grid, .testimonial-grid { grid-template-columns: 1fr; }
             .case-content { grid-template-columns: 1fr; }
+            .case-card.open .case-body { max-height: 1400px; }
             .expertise-grid, .blog-grid { grid-template-columns: 1fr; }
             .tools-grid { grid-template-columns: repeat(3, 1fr); }
             .tools-section, .qr-section { padding: 40px 20px; }
@@ -1438,6 +1439,99 @@
                                 <h4>Results</h4>
                                 <p class="case-metric">Research</p>
                                 <p>Completed prototype demonstrating spatial process visualisation. Applications in training, layout planning, maintenance guidance, and quality inspection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-header" onclick="toggleCase(this)">
+                        <div class="case-header-left">
+                            <h3 data-en="RME Operations Hub" data-de="RME Operations Hub">RME Operations Hub</h3>
+                            <p>Amazon RME &middot; 2026</p>
+                        </div>
+                        <div class="case-tags">
+                            <span class="case-tag">Web Tools</span>
+                            <span class="case-tag">Digitalisation</span>
+                            <span class="case-tag">Dashboards</span>
+                        </div>
+                        <span class="case-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-content">
+                            <div class="case-step">
+                                <h4>Challenge</h4>
+                                <p>Meeting notes, action items, shift dashboards, and tool inventories for the RME team lived in scattered spreadsheets and slide decks. No single place to check status.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Approach</h4>
+                                <p>Built a lightweight self-serve web hub — plain HTML/CSS/JS, no build step — consolidating meeting tracking, calendars, newsletters, team organisation, and a daily shift dashboard with in-page editing.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Results</h4>
+                                <p class="case-metric">7 modules</p>
+                                <p>One login-gated hub replaced scattered trackers. Content is editable in-page by the team, and charts work fully offline without external dependencies.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-header" onclick="toggleCase(this)">
+                        <div class="case-header-left">
+                            <h3 data-en="AI Digital Twin Chatbot" data-de="KI-Digital-Twin-Chatbot">AI Digital Twin Chatbot</h3>
+                            <p data-en="Personal Project &middot; 2026" data-de="Privates Projekt &middot; 2026">Personal Project &middot; 2026</p>
+                        </div>
+                        <div class="case-tags">
+                            <span class="case-tag">Cloudflare Workers</span>
+                            <span class="case-tag">LLM API</span>
+                            <span class="case-tag">Serverless</span>
+                        </div>
+                        <span class="case-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-content">
+                            <div class="case-step">
+                                <h4>Challenge</h4>
+                                <p>Recruiters visiting a portfolio have questions a static page can't answer — and email round-trips take days.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Approach</h4>
+                                <p>Built a serverless chat widget embedded in this site: a Cloudflare Worker proxies requests to an LLM grounded in my CV and project history, keeping the API key server-side.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Results</h4>
+                                <p class="case-metric">Live</p>
+                                <p>Answers career questions on this page around the clock — try the chat bubble in the corner. Runs entirely on free-tier infrastructure at zero monthly cost.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-header" onclick="toggleCase(this)">
+                        <div class="case-header-left">
+                            <h3 data-en="24/7 Personal AI Agent" data-de="24/7 Persönlicher KI-Agent">24/7 Personal AI Agent</h3>
+                            <p data-en="Personal Project &middot; 2026" data-de="Privates Projekt &middot; 2026">Personal Project &middot; 2026</p>
+                        </div>
+                        <div class="case-tags">
+                            <span class="case-tag">Python</span>
+                            <span class="case-tag">Claude API</span>
+                            <span class="case-tag">Automation</span>
+                        </div>
+                        <span class="case-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-content">
+                            <div class="case-step">
+                                <h4>Challenge</h4>
+                                <p>Routine digital chores — daily briefings, status checks, reminders — cost attention every day and are easy to forget.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Approach</h4>
+                                <p>Built an always-on Python agent connected to Telegram: an agentic LLM loop with tools for web search, file storage, and proactive notifications, plus a scheduler for recurring jobs.</p>
+                            </div>
+                            <div class="case-step">
+                                <h4>Results</h4>
+                                <p class="case-metric">24/7</p>
+                                <p>Runs unattended and messages me only when something needs attention — monitoring, briefings, and alerts fully automated on a free-tier host.</p>
                             </div>
                         </div>
                     </div>
