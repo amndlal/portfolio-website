@@ -34,36 +34,45 @@ const CAREER_FACTS = `
 - Portfolio: https://amndlal.github.io/portfolio-website
 
 ## Experience
-### Operations Engineer Intern (RME) — Amazon, Mönchengladbach (May 2026 – present)
-- Supporting reliability and maintenance engineering at a major fulfilment centre.
-- Applying lean principles and data analytics to large-scale logistics processes.
+### Operations Engineer Intern (RME) — Amazon Logistik Mönchengladbach GmbH (May 2026 – present)
+- Created a Permit to Work (PTW) dashboard from scratch to digitise the permit process for the RME team — currently being deployed on AWS.
+- Built and deployed operational dashboards and internal web tools using AI coding agents (Claude Code) for day-to-day RME operations.
+- Supporting a team Kaizen project reducing packages falling off the conveyor after the auto-induct station — root cause analysis and countermeasure implementation.
+- Assisted automation engineers on night shift during Prime Week peak, troubleshooting PLC and conveyor faults including a broken conveyor belt.
+- Completed Lean Six Sigma Yellow Belt and Minitab statistical training during the internship.
 ### Project Planner — Godrej & Boyce Manufacturing, Delhi, India (Mar 2023 – Jan 2025)
-- Managed 3 end-to-end projects, coordinating teams of 10+ with 95% on-time delivery.
-- Built 5+ Power BI dashboards consolidating procurement and project KPIs.
-- Reduced supply chain reporting lead time by ~30% through SAP automation.
-- Applied DMAIC in quality audits, reducing recurring defects by 25%.
+- Managed production and project planning across 3 sequential HVAC installation projects over 2 years, coordinating multidisciplinary teams of 10+ across locations.
+- Delivered 95% on-time milestone completion through structured planning and proactive risk tracking.
+- Built 5+ Power BI dashboards consolidating procurement and project KPIs for senior management.
+- Reduced supply chain reporting lead time by ~30% using SAP ERP.
+- Applied DMAIC across 20+ quality audits, reducing recurring defects by 25%.
 ### Industrial Trainee — FJM Cylinders (JBM Group), Haryana (Jan 2022 – Jun 2022)
 - ~15% defect reduction via root-cause analysis; 10+ machines at ~98% uptime.
-### Industrial Training — Maruti Suzuki India Limited, Gurugram (Jun 2021 – Nov 2021)
-- Precision manufacturing; Capability Index analysis of CNC machines.
+### Project Trainee, Diesel Machine Shop — Maruti Suzuki India Limited, Gurugram (Jun 2021 – Nov 2021)
+- CNC Capability Index analysis (LCB-120 and MCB series); work assessed as Very Good by the General Manager.
 
 ## Education
-- MSc Industrial Engineering & International Management — Hochschule Fresenius, Cologne (2025–2027). Smart Production, Industry 4.0, Digitalisation & AI, Quality Management. Research: 3D Simulation with AR.
-- BTech Mechanical Engineering — Maharshi Dayanand University (2017–2021).
+- MSc Industrial Engineering & International Management — Hochschule Fresenius, Cologne (2025–2027). 40 ECTS completed. Grades: Smart Technology Applications 1.3, Quality Management 2.0. Research: 3D Simulation with AR.
+- BTech Mechanical Engineering — Maharshi Dayanand University, NAAC A+ (2017–2021). First Division, 73.13%.
 
 ## Certifications
 - Lean Six Sigma Green Belt — Six Sigma Management Academy, Cologne (July 2025), certified by MBB Philip Bauer. DMAIC, SPC, Root-Cause Analysis, Waste Elimination.
+- Lean Six Sigma Yellow Belt (2026), completed during the Amazon internship.
+- Minitab statistical training at Yellow, Green and Black Belt levels.
+- AI Coder: Complete Claude Code & Coding Agents Course — Udemy.
+- AWS Certified Solutions Architect (Associate) — in preparation.
 - Active Buddy Programme Mentor for international students at Hochschule Fresenius.
 
 ## Skills
-- Lean Six Sigma (Green Belt), DMAIC, SPC, Root Cause Analysis, Continuous Improvement, Quality Management.
-- Power BI, Data Analytics, KPI tracking, Advanced Excel.
+- Lean Six Sigma (Green Belt), DMAIC, SPC, Root Cause Analysis, Kaizen, Continuous Improvement, Quality Management.
+- Power BI, Minitab, Data Analytics, KPI tracking, Advanced Excel.
+- Claude Code / AI coding agents, AWS, cloud deployment.
 - SAP ERP, MS Project, AutoCAD, SOLIDWORKS.
 - Project Management, Agile/Scrum, stakeholder coordination.
 - Industry 4.0, Smart Production, 3D simulation, AR visualisation.
 
 ## Languages
-- English (C1), German (B1), Hindi (native).
+- English (C1), German (B1, enrolled in a B2.1 course), Hindi (native).
 `;
 
 const SYSTEM_PROMPT = `You ARE Aman Dalal — speaking in the first person on your own portfolio website. You are also a capable general-purpose AI assistant. You typically talk with recruiters and hiring managers.
